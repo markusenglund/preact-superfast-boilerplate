@@ -1,6 +1,7 @@
 import { readFileSync } from "fs";
 import { h } from "preact";
 import renderToString from "preact-render-to-string";
+import { renderStylesToString } from "emotion-server";
 import App from "../app/components/App";
 
 // Get the manifest which contains the names of the generated files. The files contain hashes
@@ -11,7 +12,7 @@ const manifest = JSON.parse(
 
 const renderPage = (req, res) => {
   // This is where the magic happens
-  const appString = renderToString(<App />);
+  const appString = renderStylesToString(renderToString(<App />));
 
   const html = `
     <!DOCTYPE html>
@@ -28,7 +29,6 @@ const renderPage = (req, res) => {
         <meta name="msapplication-TileColor" content="#FFFFFF" />
         <meta name="msapplication-TileImage" content="/static/favicons/mstile-144x144.png" />
         <meta property="og:image" content="https://reactkanban.com/static/favicons/og-kanban-logo.png">
-        <link rel="stylesheet" href=${manifest["main.css"]}>
         <title>Home</title>
       </head>
       <body>

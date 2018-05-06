@@ -1,12 +1,20 @@
 import { h } from "preact";
 import Router, { Link } from "preact-router";
-import "./App.scss";
+import styled, { css } from "preact-emotion";
+
+const HomeContainer = styled("div")`
+  color: pink;
+`;
+
+const blueStyle = css`
+  background: blue;
+`;
 
 const Home = () => (
-  <div>
-    <h1>Home</h1>
+  <HomeContainer>
+    <h1 className={blueStyle}>Home</h1>
     <Link href="/about">About</Link>
-  </div>
+  </HomeContainer>
 );
 
 const About = () => <h1>About</h1>;
