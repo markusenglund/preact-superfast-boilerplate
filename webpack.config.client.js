@@ -1,6 +1,5 @@
 const path = require("path");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
-const DashboardPlugin = require("webpack-dashboard/plugin");
 const ManifestPlugin = require("webpack-manifest-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 
@@ -48,10 +47,10 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(["dist"]),
     new CopyWebpackPlugin([{ from: "src/assets/favicons", to: "favicons" }]),
-    new DashboardPlugin(),
     new ManifestPlugin()
   ],
   resolve: {
     extensions: [".js", ".jsx"]
-  }
+  },
+  stats: "minimal"
 };
