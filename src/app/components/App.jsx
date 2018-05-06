@@ -2,7 +2,7 @@ import { h } from "preact";
 import Router, { Link } from "preact-router";
 import styled, { css } from "preact-emotion";
 
-const HomeContainer = styled("div")`
+const HomeContainer = styled.div`
   color: pink;
 `;
 
