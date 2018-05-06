@@ -4,7 +4,9 @@ const nodeExternals = require("webpack-node-externals");
 module.exports = {
   name: "server",
   target: "node",
-  externals: [nodeExternals()],
+  externals: [
+    nodeExternals({ whitelist: ["react-helmet", "react-side-effect"] })
+  ],
   entry: "./src/server/server.js",
   output: {
     path: path.join(__dirname, "dist"),
@@ -45,7 +47,10 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: [".js", ".jsx"]
-  },
-  stats: "minimal"
+    extensions: [".js", ".jsx"],
+    alias: {
+      react: "preact-compat",
+      "react-dom": "preact-compat"
+    }
+  }
 };

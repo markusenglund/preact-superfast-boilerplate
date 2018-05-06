@@ -3,12 +3,11 @@
   "version": "0.1.0",
   "main": "dist/server.js",
   "scripts": {
-    "build": "webpack --watch --mode development",
+    "build": "webpack --watch --mode development --display minimal",
     "build:prod": "webpack --mode production",
     "serve": "nodemon dist/server.js",
     "serve:prod": "NODE_ENV=production node dist/server.js",
-    "analyze-bundle":
-      "webpack --mode production --profile --json > stats.json && webpack-bundle-analyzer stats.json dist/public -s gzip",
+    "analyze-bundle": "webpack --mode production --profile --json > stats.json && webpack-bundle-analyzer stats.json dist/public -s gzip",
     "lint": "eslint --ext .js,.jsx src/"
   },
   "author": "Markus Englund <markus.s.englund@gmail.com>",
@@ -22,10 +21,12 @@
     "helmet": "^3.12.0",
     "morgan": "^1.9.0",
     "preact": "^8.2.9",
+    "preact-compat": "^3.18.0",
     "preact-emotion": "^9.1.2",
     "preact-render-to-string": "^3.7.0",
     "preact-router": "^2.6.0",
     "prop-types": "^15.6.1",
+    "react-helmet": "^5.2.0",
     "serve-favicon": "^2.5.0"
   },
   "devDependencies": {

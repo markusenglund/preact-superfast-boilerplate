@@ -50,7 +50,10 @@ module.exports = {
     new ManifestPlugin()
   ],
   resolve: {
-    extensions: [".js", ".jsx"]
-  },
-  stats: "minimal"
+    extensions: [".js", ".jsx"],
+    alias: {
+      react: "preact-compat",
+      "react-dom": "preact-compat"
+    }
+  }
 };
