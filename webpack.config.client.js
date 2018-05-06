@@ -1,7 +1,6 @@
 const path = require("path");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
-const DashboardPlugin = require("webpack-dashboard/plugin");
 const ManifestPlugin = require("webpack-manifest-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const autoprefixer = require("autoprefixer");
@@ -72,7 +71,6 @@ module.exports = {
     new CleanWebpackPlugin(["dist"]),
     new ExtractTextPlugin("bundle.[hash:6].css"),
     new CopyWebpackPlugin([{ from: "src/assets/favicons", to: "favicons" }]),
-    new DashboardPlugin(),
     new ManifestPlugin()
   ],
   resolve: {
