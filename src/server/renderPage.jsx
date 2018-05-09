@@ -1,7 +1,6 @@
 import { readFileSync } from "fs";
 import { h } from "preact";
 import renderToString from "preact-render-to-string";
-import { Helmet } from "react-helmet";
 import App from "../app/components/App";
 
 // Get the manifest which contains the names of the generated files. The files contain hashes
@@ -10,11 +9,12 @@ const manifest = JSON.parse(
   readFileSync(`./dist/public/manifest.json`, "utf8")
 );
 
+const css = readFileSync("./dist/main.css", "utf8");
+console.log(css);
+
 const renderPage = (req, res) => {
   // This is where the magic happens
   const appString = renderToString(<App />);
-
-  const helmet = Helmet.renderStatic();
 
   const html = `
     <!DOCTYPE html>
@@ -31,7 +31,8 @@ const renderPage = (req, res) => {
         <meta name="msapplication-TileColor" content="#FFFFFF" />
         <meta name="msapplication-TileImage" content="/static/favicons/mstile-144x144.png" />
         <meta property="og:image" content="https://reactkanban.com/static/favicons/og-kanban-logo.png">
-        ${helmet.title.toString()}
+        <title>Normal title</title>
+        <style>${css}</style>
       </head>
       <body>
         <div id="app">${appString}</div>

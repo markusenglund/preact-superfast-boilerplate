@@ -22,6 +22,10 @@ module.exports = {
         exclude: /node_modules/
       },
       {
+        test: /\.(css|scss)$/,
+        loader: "ignore-loader"
+      },
+      {
         test: /\.(png|jpg|gif|svg)$/,
         use: [
           {

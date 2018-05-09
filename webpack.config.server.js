@@ -1,5 +1,7 @@
 const path = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const nodeExternals = require("webpack-node-externals");
+const autoprefixer = require("autoprefixer");
 
 module.exports = {
   name: "server",
@@ -21,6 +23,28 @@ module.exports = {
           loader: "babel-loader"
         },
         exclude: /node_modules/
+      },
+      {
+        test: /\.(css|scss)$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: "css-loader",
+            options: {
+              importLoaders: 1
+            }
+          },
+          {
+            loader: "postcss-loader",
+            options: {
+              ident: "postcss",
+              plugins: [autoprefixer()]
+            }
+          },
+          {
+            loader: "sass-loader"
+          }
+        ]
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
@@ -46,6 +70,7 @@ module.exports = {
       }
     ]
   },
+  plugins: [new MiniCssExtractPlugin()],
   resolve: {
     extensions: [".js", ".jsx"],
     alias: {

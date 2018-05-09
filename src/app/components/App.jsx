@@ -1,15 +1,12 @@
 import { h, Component } from "preact";
 import Router, { Link } from "preact-router";
-import { Helmet } from "react-helmet";
+import "./App.scss";
 
 class Home extends Component {
   render() {
     return (
-      <div style={{ color: "gold" }}>
-        <Helmet>
-          <title>Home II</title>
-        </Helmet>
-        <h1>Home</h1>
+      <div>
+        <h1 className="header">Home</h1>
         <Link href="/about">About</Link>
       </div>
     );
