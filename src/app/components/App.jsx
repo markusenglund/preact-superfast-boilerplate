@@ -1,26 +1,17 @@
 import { h, Component } from "preact";
 import Router, { Link } from "preact-router";
-import styled, { css } from "preact-emotion";
 import { Helmet } from "react-helmet";
-
-const HomeContainer = styled.div`
-  color: pink;
-`;
-
-const blueStyle = css`
-  background: blue;
-`;
 
 class Home extends Component {
   render() {
     return (
-      <HomeContainer>
+      <div style={{ color: "gold" }}>
         <Helmet>
           <title>Home II</title>
         </Helmet>
-        <h1 className={blueStyle}>Home</h1>
+        <h1>Home</h1>
         <Link href="/about">About</Link>
-      </HomeContainer>
+      </div>
     );
   }
 }

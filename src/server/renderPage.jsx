@@ -1,7 +1,6 @@
 import { readFileSync } from "fs";
 import { h } from "preact";
 import renderToString from "preact-render-to-string";
-import { renderStylesToString } from "emotion-server";
 import { Helmet } from "react-helmet";
 import App from "../app/components/App";
 
@@ -13,7 +12,7 @@ const manifest = JSON.parse(
 
 const renderPage = (req, res) => {
   // This is where the magic happens
-  const appString = renderStylesToString(renderToString(<App />));
+  const appString = renderToString(<App />);
 
   const helmet = Helmet.renderStatic();
 

@@ -1,7 +1,4 @@
 {
   "presets": ["@babel/env"],
-  "plugins": [
-    ["@babel/plugin-transform-react-jsx", { "pragma": "h" }],
-    "emotion"
-  ]
+  "plugins": [["@babel/plugin-transform-react-jsx", { "pragma": "h" }]]
 }
