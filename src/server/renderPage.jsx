@@ -9,8 +9,7 @@ const manifest = JSON.parse(
   readFileSync(`./dist/public/manifest.json`, "utf8")
 );
 
-const css = readFileSync("./dist/main.css", "utf8");
-console.log(css);
+const css = readFileSync("./dist/main.css", "utf8").replace("\n", "");
 
 const renderPage = (req, res) => {
   // This is where the magic happens
