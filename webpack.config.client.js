@@ -1,9 +1,7 @@
 const path = require("path");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const ManifestPlugin = require("webpack-manifest-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
-const autoprefixer = require("autoprefixer");
 
 module.exports = {
   name: "client",
@@ -25,24 +23,7 @@ module.exports = {
       },
       {
         test: /\.(css|scss)$/,
-        use: ExtractTextPlugin.extract([
-          {
-            loader: "css-loader",
-            options: {
-              importLoaders: 1
-            }
-          },
-          {
-            loader: "postcss-loader",
-            options: {
-              ident: "postcss",
-              plugins: [autoprefixer()]
-            }
-          },
-          {
-            loader: "sass-loader"
-          }
-        ])
+        loader: "ignore-loader"
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
@@ -69,11 +50,14 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(["dist"]),
-    new ExtractTextPlugin("bundle.[hash:6].css"),
     new CopyWebpackPlugin([{ from: "src/assets/favicons", to: "favicons" }]),
     new ManifestPlugin()
   ],
   resolve: {
-    extensions: [".js", ".jsx"]
+    extensions: [".js", ".jsx"],
+    alias: {
+      react: "preact-compat",
+      "react-dom": "preact-compat"
+    }
   }
 };

@@ -1,10 +1,14 @@
 const path = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const nodeExternals = require("webpack-node-externals");
+const autoprefixer = require("autoprefixer");
 
 module.exports = {
   name: "server",
   target: "node",
-  externals: [nodeExternals()],
+  externals: [
+    nodeExternals({ whitelist: ["react-helmet", "react-side-effect"] })
+  ],
   entry: "./src/server/server.js",
   output: {
     path: path.join(__dirname, "dist"),
@@ -22,7 +26,26 @@ module.exports = {
       },
       {
         test: /\.(css|scss)$/,
-        loader: "ignore-loader"
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: "css-loader",
+            options: {
+              importLoaders: 1,
+              minimize: true
+            }
+          },
+          {
+            loader: "postcss-loader",
+            options: {
+              ident: "postcss",
+              plugins: [autoprefixer()]
+            }
+          },
+          {
+            loader: "sass-loader"
+          }
+        ]
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
@@ -48,7 +71,12 @@ module.exports = {
       }
     ]
   },
+  plugins: [new MiniCssExtractPlugin()],
   resolve: {
-    extensions: [".js", ".jsx"]
+    extensions: [".js", ".jsx"],
+    alias: {
+      react: "preact-compat",
+      "react-dom": "preact-compat"
+    }
   }
 };

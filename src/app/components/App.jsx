@@ -1,13 +1,17 @@
-import { h } from "preact";
+import { h, Component } from "preact";
 import Router, { Link } from "preact-router";
 import "./App.scss";
 
-const Home = () => (
-  <div>
-    <h1>Home</h1>
-    <Link href="/about">About</Link>
-  </div>
-);
+class Home extends Component {
+  render() {
+    return (
+      <div>
+        <h1 className="header">Home</h1>
+        <Link href="/about">About</Link>
+      </div>
+    );
+  }
+}
 
 const About = () => <h1>About</h1>;
 
