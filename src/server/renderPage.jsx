@@ -13,7 +13,7 @@ const css = readFileSync("./dist/main.css", "utf8").replace("\n", "");
 
 const renderPage = (req, res) => {
   // This is where the magic happens
-  const appString = renderToString(<App />);
+  const appString = renderToString(<App url={req.url} />);
 
   const html = `
     <!DOCTYPE html>

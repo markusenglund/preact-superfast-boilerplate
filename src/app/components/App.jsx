@@ -15,10 +15,10 @@ class Home extends Component {
 
 const About = () => <h1>About</h1>;
 
-const App = () => {
+const App = ({ url }) => {
   const about = "/about";
   return (
-    <Router>
+    <Router url={url}>
       <Home path="/" />
       <About path={about} />
     </Router>
